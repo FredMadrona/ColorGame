@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" href="/css/main.min.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link   rel="stylesheet"    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="colorgame.js"></script>
+    <title> Color Game </title>
+
+</head>
+<body>
+   
+
+    <div id="choices" class="row mx-auto col-lg-6 col-md-8 col-sm-10 px-3 m-3 " style="border: brown 5px solid;">
+     
+       <div class="row d-flex justify-content-between  ">
+        <div class="col  "> <h6 class=" mx-auto pt-4"> Color Game </h6> </div>
+             
+        <div class="col mt-1 text-end ">
+            <button class="btn btn-outline-danger small mt-3" id="Reset" onclick="Reset()"> Reset </button>
+      
+  
+            <button class="btn btn-outline-secondary small mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> How to Play </button>
+        </div>
+     
+       
+    
+        </div>
+        
+        <div class="row pb-3 my-3 text-center ">
+          <div class="row mb-3 "> <h6 class="text-center"> Winning Combination </h6></div>
+
+           <div class="col" ><div class="box mx-auto " id="winner1">  </div></div>
+           <div class="col"><div class="box mx-auto " id="winner2"> </div></div>
+           <div class="col"><div class="box mx-auto " id="winner3">  </div></div>
+        </div>
+        <hr>
+
+        <div class="row mx-auto"> 
+            <h6 class="display-6 text-center" > Player Interface </h6>
+
+          <div class="col"> 
+            <strong class="text-justify"> Balance : </strong> <span id="Balance"> 100 </span>
+          </div>
+          <div class="col"> 
+            <strong class="text-justify"> Win : </strong> <span id="Win"> 0 </span>
+          </div>
+          <div class="col"> 
+            <strong class="text-justify"> Loss : </strong> <span id="Loss"> 0 </span>
+          </div>
+        </div>
+        <div class="row mt-3 pb-3">
+          <div class="col-5 mx-auto rounded">
+            <input type="number" name="White" placeholder="White Bet" id="WhiteBet" class="py-2 small rounded border border-primary my-2 text-center text-dark mx-auto w-100" style="background-color:#fff ;">
+            <input type="number" name="Blue" placeholder="Blue Bet" id="BlueBet" class="py-2 small rounded border border-primary my-2 text-center text-white w-100" style="background-color: #5E5EF7;">
+            <input type="number" name="Pink" placeholder="Pink Bet" id="PinkBet" class="py-2 small rounded border border-primary my-2 text-center text-white w-100" style="background-color: #F57288 ;">
+          </div>
+          <div class="col-5 mx-auto rounded">
+            <input type="number" name="Red" placeholder="Red Bet" id="RedBet" class="py-2 small rounded border border-primary my-2 text-center text-white w-100" style="background-color: #FD5E5E ;">
+            <input type="number" name="Green" placeholder="Green Bet" id="GreenBet" class="py-2 small rounded border border-primary my-2 text-center text-white w-100" style="background-color: #327532 ;">
+            <input type="number" name="Purple" placeholder="Purple Bet" id="PurpleBet" class="py-2 small rounded border border-primary my-2 text-center text-white w-100" style="background-color: #F15EF1 ;">
+          </div>
+          </div>
+          
+        <button onclick="hulog()" id= "roll" class="btn btn-md btn-dark w-50 mx-auto py-2 my-4 rounded-pill"> Roll </button>
+        </div>
+        
+        
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">How to Play</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body lh-lg">
+        The user has an initial balance of 100. 
+         This balance can be used to bet on the six (6) colors. 
+         The user wins his/her bet everytime the color appears on the winning combinations above.
+         once - x2
+         double - x3
+         triple - x4 .
+         If not, the bet will be subtracted to the users balance. The game will continue as long as the player has remaining balance.
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>   
+      
+
+
+        <!-- <div class="row container-fluid  mx-auto my-2">
+            <div class="col"><div class="box" style="background-color: white;"></div></div>
+            <div class="col"><div class="box" style="background-color: #5E5EF7;"></div></div> // Blue
+            <div class="col"><div class="box" style="background-color: #FD5E5E;"></div></div> //Red
+        </div>
+        <div class="row container-fluid 7 mx-auto my-2">
+            <div class="col"><div class="box" style="background-color: #327532;"></div></div> // Green
+            <div class="col"><div class="box" style="background-color: #F57288;"></div></div> 
+            <div class="col"><div class="box" style="background-color: #F15EF1;"></div></div>
+        </div> -->
+ 
+
+   
+
+    <style>
+::placeholder{
+    color: #000;
+    opacity:1.3;
+}
+
+
+
+        #choices{
+            top:10%;
+            border-radius: 41px;
+            background: #ECCCB2;
+            box-shadow: inset 5px 5px 10px #b19986,
+            inset -5px -5px 10px #ffffdf;
+        }
+        body{
+            background-color:#ffe98a;
+        }
+        *{
+            transition: 1000ms;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+            border-radius: 15px;
+        }
+
+    .box{
+        border: solid 5px #ffffdf;
+        cursor:pointer ;
+        height: 100%;
+        padding: 35%;
+        width: 100%;
+        border-radius: 25px;
+        box-shadow:  5px 5px 10px #5e5247,
+             -5px -5px 10px #ffffff;
+    }
+
+    #roll{
+      border: solid 5px #754c24;
+      
+        box-shadow:  5px 5px 10px #5e5247,
+             -5px -5px 10px #ffffff;
+    }
+
+   .col-5{
+    border: solid 5px #754c24;
+   
+    background: linear-gradient(145deg, #fddabe, #d4b8a0);
+    box-shadow:  5px 5px 10px #5e5247,
+             -5px -5px 10px #ffffff;
+   }
+ 
+
+    /* @media screen and (max-width: 800px) {
+        *{
+            padding: 0;
+            margin:0;
+        }
+        body{
+            background-color: gray;
+        }
+        .box{
+            height:10vh;
+         width: 10vh;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        *{
+            padding: 0;
+            margin:0;
+        }
+        body{
+            background-color: #fff;
+        }
+        .box{
+            height:10vh;
+             width: 10vh;
+        }
+    } */
+
+    </style>
+
+
+
+
+</body>
+</html>
